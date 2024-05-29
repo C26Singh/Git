@@ -204,3 +204,38 @@ sh
 Copy code
 $ git config --show-origin rerere.autoUpdate
 
+
+# Getting Help
+
+If you ever need assistance while using Git, there are several ways to get the help you need.
+
+## Comprehensive Manual Page Help
+
+You can access the comprehensive manual page (manpage) help for any Git command using one of the following commands:
+
+```sh
+$ git help <verb>
+$ git <verb> --help
+$ man git-<verb>
+For example, to get the manpage help for the git config command, you can run:
+
+sh
+Copy code
+$ git help config
+These commands are accessible anywhere, even offline.
+
+IRC Channels for In-Person Help
+If you require in-person help beyond the available documentation, you can join the following IRC channels on the Libera Chat server:
+
+#git
+#github
+#gitlab
+These channels are filled with hundreds of knowledgeable individuals who are often willing to assist with Git-related queries.
+
+Quick Refresher on Command Options
+If you only need a quick overview of the available options for a Git command, you can use the -h option. For example:
+
+sh
+Copy code
+$ git add -h
+This command provides a concise summary of the available options for the git add command.
