@@ -47,3 +47,46 @@ Version control is a system that records changes to files over time, allowing yo
   - Full backups on every client
   - Resilient to server failures
   - Supports multiple workflows and collaborations
+ 
+# What is Git?
+
+## Overview
+Git is a distributed version control system that simplifies managing changes to files and collaborating on projects. Understanding its core concepts will make using Git easier.
+
+## Snapshots, Not Differences
+Unlike other VCSs that store data as changes (deltas) to files, Git stores data as snapshots of the entire project at specific points in time. Each commit saves a snapshot, storing links to unchanged files to optimize space.
+
+## Local Operations
+Most Git operations are local, requiring no network access. This makes actions like viewing history or comparing versions fast and available offline. You can work and commit changes locally even without network access, unlike some other VCSs.
+
+## Integrity
+Git ensures data integrity by checksumming everything with SHA-1 hashes. Every file, commit, and repository state is referenced by a hash, making it impossible to alter data undetected.
+
+## Data Persistence
+Git primarily adds data, making it difficult to lose committed snapshots. Once you commit changes, they are safely stored and hard to delete accidentally, especially when regularly pushing to remote repositories.
+
+## The Three States
+Files in Git can be:
+- **Modified:** Changed but not committed.
+- **Staged:** Marked for inclusion in the next commit.
+- **Committed:** Stored in the local database.
+
+## Git Workflow
+1. **Modify:** Change files in the working tree.
+2. **Stage:** Add changes to the staging area.
+3. **Commit:** Save changes from the staging area to the Git directory.
+
+## Key Components
+- **Working Tree:** Your local checkout of the project.
+- **Staging Area:** Files marked for the next commit.
+- **Git Directory:** Where metadata and object database are stored.
+
+## Summary
+- **Git uses snapshots:** Efficient storage by saving complete project states.
+- **Local operations:** Fast, offline capabilities.
+- **Data integrity:** Secure with SHA-1 checksums.
+- **Persistence:** Difficult to lose committed data.
+- **Three states:** Modified, staged, committed files.
+
+Understanding these concepts will help you use Git more effectively.
+
