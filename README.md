@@ -1,5 +1,4 @@
-markdown
-Copy code
+
 # Git
 
 ## Git Authentication Methods
@@ -23,8 +22,6 @@ Copy code
 | | <--- Access Granted --| |
 +-------------+ +------------------+
 
-mathematica
-Copy code
 
 ### 2. SSH Keys
 
@@ -43,8 +40,7 @@ ssh-keygen: The command to generate a new SSH key.
 Add SSH Key to the SSH Agent
 Step 4: Initialize the SSH agent and print its process ID:
 
-sh
-Copy code
+
 eval "$(ssh-agent -s)"
 Step 5: Add SSH Key to the Agent:
 
@@ -53,8 +49,6 @@ Copy code
 ssh-add ~/.ssh/id_rsa
 This command adds the private key (id_rsa) to the SSH agent.
 
-vbnet
-Copy code
 +-------------+                       +------------------+
 |  Developer  |                       |  Git Repository  |
 |  (Client)   |                       |   (Server)       |
@@ -73,8 +67,7 @@ Copy code
 +-------------+                       +------------------+
 3. Personal Access Tokens (PAT)
 How to Generate PAT?
-lua
-Copy code
+
 +-------------+                       +------------------+
 |  Developer  |                       |  Git Repository  |
 |  (Client)   |                       |   (Server)       |
@@ -89,8 +82,7 @@ Copy code
 |             | <--- Access Granted --|                  |
 +-------------+                       +------------------+
 4. OAuth
-sql
-Copy code
+
 +-------------+                       +------------------+
 |  Developer  |                       |  Git Repository  |
 |  (Client)   |                       |   (Server)       |
