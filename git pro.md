@@ -146,3 +146,61 @@ $ ./configure --prefix=/usr
 $ make all doc info
 $ sudo make install install-doc install-html install-info
 
+
+# First-Time Git Setup
+
+## Configuration Locations
+
+Git configuration variables can be stored in three places:
+- System-wide: `/etc/gitconfig`
+- User-specific: `~/.gitconfig` or `~/.config/git/config`
+- Repository-specific: `.git/config`
+
+Each level overrides values in the previous level.
+
+## Viewing Configuration
+
+To view all configuration settings and their origins:
+```sh
+$ git config --list --show-origin
+Setting Your Identity
+Set your user name and email address:
+
+sh
+Copy code
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+Configuring Your Editor
+Set the default text editor:
+
+sh
+Copy code
+$ git config --global core.editor emacs
+On Windows, specify the full path:
+
+sh
+Copy code
+$ git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
+Setting Default Branch Name
+Set the default branch name (from Git version 2.28):
+
+sh
+Copy code
+$ git config --global init.defaultBranch main
+Checking Settings
+To check configuration settings:
+
+sh
+Copy code
+$ git config --list
+To check a specific setting:
+
+sh
+Copy code
+$ git config user.name
+To determine the origin of a setting:
+
+sh
+Copy code
+$ git config --show-origin rerere.autoUpdate
+
