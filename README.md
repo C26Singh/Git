@@ -44,8 +44,7 @@ Step 4: Initialize the SSH agent and print its process ID:
 eval "$(ssh-agent -s)"
 Step 5: Add SSH Key to the Agent:
 
-sh
-Copy code
+
 ssh-add ~/.ssh/id_rsa
 This command adds the private key (id_rsa) to the SSH agent.
 
