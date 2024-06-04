@@ -665,3 +665,131 @@ Changes to be committed:
 **Important**: It’s important to understand that `git restore <file>` is a dangerous command. Any local changes you made to that file are gone—Git just replaced that file with the last staged or committed version. Don’t ever use this command unless you absolutely know that you don’t want those unsaved local changes.
 
 Remember, anything that is committed in Git can almost always be recovered. Even commits that were on branches that were deleted or commits that were overwritten with an `--amend` commit can be recovered (see Data Recovery for data recovery). However, anything you lose that was never committed is likely never to be seen again.
+
+## 2.5 Git Basics - Working with Remotes
+
+To collaborate effectively on any Git project, understanding how to manage remote repositories is essential. Remote repositories are versions of your project hosted on the Internet or network. You can have several remote repositories, each of which can be read-only or read/write. This section covers skills for managing remote repositories, including adding and removing remotes, managing remote branches, and tracking them.
+
+### Showing Your Remotes
+
+To see which remote servers you have configured, use the `git remote` command:
+
+```sh
+$ git remote
+origin
+```
+
+You can add the `-v` option to see the URLs associated with each remote:
+
+```sh
+$ git remote -v
+origin https://github.com/schacon/ticgit (fetch)
+origin https://github.com/schacon/ticgit (push)
+```
+
+If you have multiple remotes, the command lists them all. For example:
+
+```sh
+$ git remote -v
+bakkdoor  https://github.com/bakkdoor/grit (fetch)
+bakkdoor  https://github.com/bakkdoor/grit (push)
+cho45     https://github.com/cho45/grit (fetch)
+cho45     https://github.com/cho45/grit (push)
+defunkt   https://github.com/defunkt/grit (fetch)
+defunkt   https://github.com/defunkt/grit (push)
+koke      git://github.com/koke/grit.git (fetch)
+koke      git://github.com/koke/grit.git (push)
+origin    git@github.com:mojombo/grit.git (fetch)
+origin    git@github.com:mojombo/grit.git (push)
+```
+
+### Adding Remote Repositories
+
+To add a new remote repository with a shortname, use `git remote add <shortname> <url>`:
+
+```sh
+$ git remote add pb https://github.com/paulboone/ticgit
+$ git remote -v
+origin  https://github.com/schacon/ticgit (fetch)
+origin  https://github.com/schacon/ticgit (push)
+pb      https://github.com/paulboone/ticgit (fetch)
+pb      https://github.com/paulboone/ticgit (push)
+```
+
+Now, you can use the shortname `pb` on the command line instead of the full URL. To fetch all the information from `pb`:
+
+```sh
+$ git fetch pb
+```
+
+### Fetching and Pulling from Your Remotes
+
+To get data from your remote projects, use:
+
+```sh
+$ git fetch <remote>
+```
+
+For example, fetching from the default `origin` remote:
+
+```sh
+$ git fetch origin
+```
+
+The `git fetch` command only downloads data to your local repository; it doesn't automatically merge it. You can merge it manually when ready.
+
+If your branch is set up to track a remote branch, you can use `git pull` to automatically fetch and merge:
+
+```sh
+$ git pull
+```
+
+### Pushing to Your Remotes
+
+To push your changes to the remote repository, use `git push <remote> <branch>`:
+
+```sh
+$ git push origin master
+```
+
+This command pushes your changes to the `master` branch of the `origin` remote. If someone else has pushed changes upstream before you, your push will be rejected until you fetch and merge their changes.
+
+### Inspecting a Remote
+
+To see more information about a remote, use `git remote show <remote>`:
+
+```sh
+$ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/schacon/ticgit
+  Push  URL: https://github.com/schacon/ticgit
+  HEAD branch: master
+  Remote branches:
+    master                               tracked
+    dev-branch                           tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date)
+```
+
+### Renaming and Removing Remotes
+
+To rename a remote, use `git remote rename`:
+
+```sh
+$ git remote rename pb paul
+$ git remote
+origin
+paul
+```
+
+To remove a remote, use `git remote remove` or `git remote rm`:
+
+```sh
+$ git remote remove paul
+$ git remote
+origin
+```
+
+Removing a remote also deletes all remote-tracking branches and configuration settings associated with that remote.
