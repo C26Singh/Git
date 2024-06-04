@@ -988,3 +988,39 @@ In “detached HEAD” state, if you make changes and then create a commit, the 
 $ git checkout -b version2 v2.0.0
 Switched to a new branch 'version2'
 If you do this and make a commit, your version2 branch will be slightly different than your v2.0.0 tag since it will move forward with your new changes, so do be careful.
+
+2.7 Git Basics - Git Aliases
+Git Aliases
+Before we move on to the next chapter, we want to introduce a feature that can make your Git experience simpler, easier, and more familiar: aliases. For clarity’s sake, we won’t be using them anywhere else in this book, but if you go on to use Git with any regularity, aliases are something you should know about.
+
+Git doesn’t automatically infer your command if you type it in partially. If you don’t want to type the entire text of each of the Git commands, you can easily set up an alias for each command using git config. Here are a couple of examples you may want to set up:
+
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+This means that, for example, instead of typing git commit, you just need to type git ci. As you go on using Git, you’ll probably use other commands frequently as well; don’t hesitate to create new aliases.
+
+This technique can also be very useful in creating commands that you think should exist. For example, to correct the usability problem you encountered with unstaging a file, you can add your own unstage alias to Git:
+
+$ git config --global alias.unstage 'reset HEAD --'
+This makes the following two commands equivalent:
+
+$ git unstage fileA
+$ git reset HEAD -- fileA
+This seems a bit clearer. It’s also common to add a last command, like this:
+
+$ git config --global alias.last 'log -1 HEAD'
+This way, you can see the last commit easily:
+
+$ git last
+commit 66938dae3329c7aebe598c2246a8e6af90d04646
+Author: Josh Goebel <dreamer3@example.com>
+Date:   Tue Aug 26 19:48:51 2008 +0800
+
+    Test for current head
+
+    Signed-off-by: Scott Chacon <schacon@example.com>
+As you can tell, Git simply replaces the new command with whatever you alias it for. However, maybe you want to run an external command, rather than a Git subcommand. In that case, you start the command with a ! character. This is useful if you write your own tools that work with a Git repository. We can demonstrate by aliasing git visual to run gitk:
+
+$ git config --global alias.visual '!gitk'
