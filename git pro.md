@@ -289,3 +289,114 @@ $ git clone https://github.com/libgit2/libgit2 mylibgit
 
 Git supports various protocols like `https://`, `git://`, and `ssh://`.
 ```
+
+### Git Basics - Recording Changes to the Repository
+
+#### Understanding Tracked and Untracked Files
+In Git, files in your working directory can either be **tracked** or **untracked**:
+- **Tracked Files**: These are files that Git is aware of because they were in the last snapshot (commit) or have been staged for the next commit. Tracked files can be in one of three states: unmodified, modified, or staged.
+- **Untracked Files**: These are files that Git does not know about because they were not in the last snapshot and have not been staged.
+
+#### Checking the Status of Your Files
+To see which files are in which state, you use the `git status` command:
+```sh
+$ git status
+```
+Immediately after cloning a repository, all files should be tracked and unmodified.
+
+#### Tracking New Files
+To start tracking a new file, use `git add`:
+```sh
+$ git add README
+```
+Running `git status` again will show that the file is now tracked and staged for commit:
+```sh
+$ git status
+```
+Output will include:
+```sh
+Changes to be committed:
+  new file:   README
+```
+
+#### Staging Modified Files
+If you modify an already tracked file and want to stage these changes, use `git add`:
+```sh
+$ git add CONTRIBUTING.md
+```
+Before staging, `git status` will show:
+```sh
+Changes not staged for commit:
+  modified:   CONTRIBUTING.md
+```
+After staging, `git status` will update:
+```sh
+Changes to be committed:
+  modified:   CONTRIBUTING.md
+```
+
+#### Using Short Status
+For a more compact view of your changes, use:
+```sh
+$ git status -s
+```
+This gives a simplified output showing the state of the staging area and the working directory.
+
+#### Ignoring Files
+To prevent certain files from being tracked, create a `.gitignore` file with patterns for the files you want to ignore:
+```sh
+$ cat .gitignore
+*.log
+*.tmp
+```
+You can specify rules for ignoring files using standard glob patterns.
+
+#### Viewing Changes
+To see the exact changes made but not yet staged, use:
+```sh
+$ git diff
+```
+To see changes that are staged for the next commit:
+```sh
+$ git diff --staged
+```
+
+#### Committing Your Changes
+To commit staged changes, use:
+```sh
+$ git commit
+```
+This will open your default editor to enter a commit message. Alternatively, use the `-m` flag to include a message directly:
+```sh
+$ git commit -m "Commit message"
+```
+
+#### Skipping the Staging Area
+To commit all tracked changes directly without staging them first, use:
+```sh
+$ git commit -a -m "Commit message"
+```
+
+#### Removing Files
+To remove a file from the working directory and stop tracking it:
+```sh
+$ git rm FILE_NAME
+```
+To remove a file only from the staging area but keep it in the working directory:
+```sh
+$ git rm --cached FILE_NAME
+```
+
+#### Moving Files
+To move or rename a file:
+```sh
+$ git mv OLD_NAME NEW_NAME
+```
+This is equivalent to manually moving the file, removing the old name, and adding the new name:
+```sh
+$ mv OLD_NAME NEW_NAME
+$ git rm OLD_NAME
+$ git add NEW_NAME
+```
+
+By following these steps and commands, you can effectively manage the state of your files within a Git repository, ensuring that your project is tracked accurately and efficiently.
