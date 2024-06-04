@@ -400,3 +400,106 @@ $ git add NEW_NAME
 ```
 
 By following these steps and commands, you can effectively manage the state of your files within a Git repository, ensuring that your project is tracked accurately and efficiently.
+
+### Git Basics - Viewing the Commit History
+
+When working on a project, it's essential to understand the history of changes. Git provides powerful tools to view this history through the `git log` command.
+
+#### Cloning the Example Repository
+To follow along with the examples, you can clone a simple project repository:
+```sh
+$ git clone https://github.com/schacon/simplegit-progit
+```
+
+#### Basic `git log` Command
+Running `git log` in your project directory gives you a list of commits:
+```sh
+$ git log
+```
+This will display:
+- The commit's SHA-1 checksum
+- Author's name and email
+- Date of the commit
+- Commit message
+
+Example output:
+```sh
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    Change version number
+```
+
+#### Useful `git log` Options
+
+- **Show differences introduced by each commit (-p or --patch):**
+    ```sh
+    $ git log -p
+    ```
+- **Limit the number of commits displayed (-<n>):**
+    ```sh
+    $ git log -2
+    ```
+- **Show abbreviated stats (--stat):**
+    ```sh
+    $ git log --stat
+    ```
+
+#### Formatting Log Output
+
+- **Predefined formats (oneline, short, full, fuller):**
+    ```sh
+    $ git log --pretty=oneline
+    ```
+- **Custom format with --pretty=format:**
+    ```sh
+    $ git log --pretty=format:"%h - %an, %ar : %s"
+    ```
+
+##### Useful Specifiers for Custom Formatting
+| Specifier | Description                     |
+|-----------|---------------------------------|
+| %H        | Commit hash                     |
+| %h        | Abbreviated commit hash         |
+| %an       | Author name                     |
+| %ae       | Author email                    |
+| %ad       | Author date                     |
+| %ar       | Author date, relative           |
+| %s        | Subject                         |
+
+- **Graphical representation of the commit history (--graph):**
+    ```sh
+    $ git log --pretty=format:"%h %s" --graph
+    ```
+
+#### Limiting Log Output
+
+- **Show commits from a specific date range (--since, --until):**
+    ```sh
+    $ git log --since="2023-01-01" --until="2023-01-31"
+    ```
+- **Filter by author (--author):**
+    ```sh
+    $ git log --author="Scott Chacon"
+    ```
+- **Search commit messages (--grep):**
+    ```sh
+    $ git log --grep="bugfix"
+    ```
+
+##### Other Limiting Options
+| Option      | Description                                      |
+|-------------|--------------------------------------------------|
+| -<n>        | Show only the last n commits                     |
+| --since     | Limit commits to those made after the given date |
+| --until     | Limit commits to those made before the given date|
+| --committer | Filter by committer                              |
+| -S          | Show commits that add or remove a string         |
+
+- **Example combining multiple filters:**
+    ```sh
+    $ git log --author="Junio C Hamano" --since="2008-10-01" --until="2008-11-01" --no-merges -- t/
+    ```
+
+By leveraging these `git log` options and filters, you can tailor the commit history view to your specific needs, making it easier to understand and manage your project's evolution.
